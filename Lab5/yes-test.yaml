@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: yes-test
+  name: yes-test
+  namespace: ns-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yes-test
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: yes-test
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: 
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+status: {}

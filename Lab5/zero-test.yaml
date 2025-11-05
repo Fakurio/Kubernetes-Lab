@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: zero-test
+  name: zero-test
+  namespace: ns-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zero-test
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: zero-test
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
