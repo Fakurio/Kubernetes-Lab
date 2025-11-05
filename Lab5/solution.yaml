@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-dev
+spec: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-prod
+spec: {}
+status: {}
+
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ns-dev-quota
+  namespace: ns-dev
+spec:
+  hard:
+    cpu: "1"
+    memory: 1G
+    pods: "10"
+status: {}
+
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ns-prod-quota
+  namespace: ns-prod
+spec:
+  hard:
+    cpu: "2"
+    memory: 2G
+status: {}
+
+---
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: ns-dev-limit-range
+  namespace: ns-dev
+spec:
+  limits:
+  - default:
+      cpu: 200m
+      memory: 256Mi
+    defaultRequest:
+      cpu: 200m
+      memory: 256Mi
+    max:
+      cpu: 200m
+      memory: 256Mi   
+    type: Container
