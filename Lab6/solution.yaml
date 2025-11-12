@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-proxy
+    typ: proxy
+  name: nginx-proxy
+  annotations:
+    kubernetes.io/description: "Proxy na bazie nginx"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx-proxy
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy
+    spec:
+      containers:
+      - image: nginx:1.19.1
+        name: nginx
+        resources: {}
+status: {}
