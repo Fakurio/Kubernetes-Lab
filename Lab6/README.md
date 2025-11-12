@@ -24,7 +24,7 @@ spec:
         resources: {}
 status: {}
 ```
-Następnię dodałem etykietę `typ=proxy` wraz z adnotacją oraz
+Następnię dodałem etykietę `typ=proxy` wraz z adnotacją
 ```yaml 
 metadata:
   labels:
@@ -34,7 +34,7 @@ metadata:
   annotations:
     kubernetes.io/description: "Proxy na bazie nginx"
 ```
-informacje na temat strategii update'u konfiguracji.
+oraz informacje na temat strategii update'u konfiguracji.
 ```yaml
 strategy: 
     type: RollingUpdate 
