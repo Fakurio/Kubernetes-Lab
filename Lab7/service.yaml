@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    # odwolanie do poda remoteweb
+    run: remoteweb
+  name: remoteweb
+  namespace: remote
+spec:
+  ports:
+  - name: 80-80
+    nodePort: 31999
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    # odwolanie do poda remoteweb
+    run: remoteweb
+  type: NodePort
+status:
+  loadBalancer: {}
