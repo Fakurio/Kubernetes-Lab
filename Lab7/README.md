@@ -44,7 +44,7 @@ Za pomocą polecenia `kubectl get svc remoteweb -n remote` sprawdzilem ip klastr
 `kubectl exec testpod -it -- wget 10.100.239.85:80 --spider --timeout=1`.  
 W rezultacie dostałem taką odpowiedź  
 `Connecting to 10.100.239.85:80 (10.100.239.85:80)
-remote file exists`
+remote file exists` co potwierdza, że pody mogą się komunikować.
 
 5. Sprawdzenie łączności z podem remoteweb z zewnątrz
 
