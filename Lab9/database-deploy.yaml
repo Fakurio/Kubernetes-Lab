@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: database
+  name: database
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - backend
+      containers:
+      - image: mysql
+        name: mysql
+        resources:
+          requests:
+            memory: "512Mi"
+          limits:
+            memory: "512Mi"
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+status: {}
