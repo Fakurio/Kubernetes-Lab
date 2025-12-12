@@ -393,10 +393,15 @@ W jednym terminalu uruchomiłem poda z apache-bend w przestrzeni nazw frontend
 i wydałe polecenie `ab -n 500000 -c 100 http://frontend-svc/` które wysyła na serwis  
 frontend-svc 500000 zapytań ze 100 jednoczesnych połączeń  
 
+![title](images/apache-bend.png)  
+
+
 W drugim terminalu sprawdziłem komendą `kubectl get hpa -n frontend -w` jak będzie  
-zachowywał się autoskaler. Jak widać na załączonym obrazku skaler działa poprawnie
+zachowywał się autoskaler. Jak widać na załączonym obrazku skaler działa poprawnie  
+
+
 ![title](images/hpa-showcase.png)  
-![title](images/apache-bend.png)
+
 
 ## Część dodatkowa
 
