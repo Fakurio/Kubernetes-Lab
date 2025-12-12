@@ -398,3 +398,28 @@ zachowywał się autoskaler. Jak widać na załączonym obrazku skaler działa p
 ![title](images/hpa-showcase.png)  
 ![title](images/apache-bend.png)
 
+## Część dodatkowa
+
+### Punkt 1
+
+Tak, można dokonać aktualizacji aplikacji frontend działającej pod HPA:  
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#migrating-deployments-and-statefulsets-to-horizontal-autoscaling  
+
+### Punkt 2
+
+Do pliku frontend-deploy.yaml należy dodać taką strategię  
+```yaml
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 0
+    maxUnavailable: 1
+```
+Z pliku frontend-deploy.yaml zgodnie z dokumentacją należy usunąć `spec.replicas`  
+W pliku frontend-hpa.yaml należy zmienić `spec.minReplicas` na 3
+
+W trakcie aktualizacji 2 pody zawsze będą aktywne ponieważ `minReplicas` - `maxUnavailable` daje nam 2.  
+  
+Ograniczenia quota i limit range również będą przestrzegane. W sytuacji gdy HPA przeskaluje aplikacje  
+do 10 podów parametr `maxSurge: 0` zapewni, że podczas aktualizacji pierw usunięty zostanie któryś pod  
+przed utworzeniem nowego przez co nie przekroczymy limitów zasobów które zostały dobrane dla max 10 podów.
