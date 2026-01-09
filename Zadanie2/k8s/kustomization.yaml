@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - mysql.yaml
+  - backend.yaml
+  - frontend.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: app-config
+    literals:
+      - MYSQL_DATABASE=mangashop
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - NODE_ENV=prod
+      - JWT_EXPIRES_IN=5m
+      - JWT_REFRESH_EXPIRES_IN=1d
+      - COOKIE_MAX_AGE=86400000
+      - CORS_WHITELIST_ORIGINS=[]
+
+secretGenerator:
+  - name: app-secrets
+    literals:
+      - JWT_SECRET=strong_secret
+      - MYSQL_ROOT_PASSWORD=root
