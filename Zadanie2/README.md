@@ -325,4 +325,22 @@ kubectl port-forward -n ingress-nginx ingress-nginx-controller-9cc49f96f-s96hr 5
 
 Aplikacja jest dostępna w przeglądarce na adresie ```http://brilliantapp.zad:5555```  
 
-![title](images/app.png) 
+![title](images/app.png)
+
+## Część nieobowiązkowa
+
+Jako aktualizację aplikacji wybrałem zmiane koloru tła na wszystkich podstronach.  
+Nowy obraz z aplikacją frontu ztagowałem jako v2 i wysłałem na docker hub.  
+Następnie podmieniłem obraz dla deploymentu frontentu komendą  
+
+```kubectl set image deployment/frontend frontend=fakurio/frontend-image:v2```  
+
+Przez to, że obraz posiada nowy tag deploy automatycznie zaczyna aktualizację podów  
+
+![title](images/update.png) 
+
+Po odświerzeniu przeglądarki zmiany są widoczne
+
+![title](images/updated-app.png)
+
+![title](images/updated-app-2.png) 
