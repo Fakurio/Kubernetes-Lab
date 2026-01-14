@@ -320,7 +320,7 @@ Aby uzyskać dostęp do aplikacji z przeglądarki trzeba dodać nowy wpis DNS do
 ```
 a następnie przekierować kontroler ingressu na lokalny port komputera komendą  
 ```
-kubectl port-forward -n ingress-nginx ingress-nginx-controller-9cc49f96f-s96hr 5555:80
+kubectl port-forward -n ingress-nginx service/ingress-nginx-controller 5555:80
 ```
 
 Aplikacja jest dostępna w przeglądarce na adresie ```http://brilliantapp.zad:5555```  
